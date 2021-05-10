@@ -1,14 +1,42 @@
-import React from 'react'
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-  } from "react-router-dom";
+import './App.css';
+import {  Switch, Route, Link, useLocation } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
 
-export default function App() {
-    return (
-       <div>
-         </div>
+const Quiz = lazy(()=> import ('./components/Quiz.js'));
+const QuizWynik = lazy(()=> import ('./components/QuizWynik.js'));
+// const Login = lazy(() => import('./Login'));
+const Home = lazy(() => import('./Home'));
+// const Register = lazy(() => import('./Register'));
+
+function App() {
+
+  const location = useLocation();
+  const background = location.state && location.state.background;
+
+  return (
+    <Suspense fallback="Loading">
+        <h2>Navigation bar</h2>
+        <div className="nav">
+          <Link to="/"> Home </Link>
+          <Link to="/quiz"> quiz </Link>
+          <Link to="/login"> Login </Link>
+        </div>
+        <Switch className="content" location={location || background}>
+          <Route exact path="/" children={<Home/>}/>
+          <Route path="/quiz" children={<Quiz/>}/>
+          <Route path="/quiz-wynik" children={ <QuizWynik/> }/>
+          {/* <Route path="/login" component={<Login/>}/>
+          <Route path="/register" component={<Register/>}/> */}
+        </Switch>
+    </Suspense>
+  //   <Suspense fallback='Ladowanie' >
+
+  //     <Switch location={location || background} >
+
+  //     </Switch>
+
+
+  //   </Suspense>
   );
 }
+export default App
