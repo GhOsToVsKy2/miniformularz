@@ -1,6 +1,6 @@
 import './App.css';
 import { BrowserRouter as Router, Switch, Route, Link, useLocation } from 'react-router-dom';
-import { lazy, Suspense } from 'react';
+import React, { lazy, Suspense } from 'react';
 
 const About = lazy(()=> import ('./About'));
 const Login = lazy(() => import('./Login'));

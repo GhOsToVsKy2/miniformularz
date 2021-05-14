@@ -1,9 +1,11 @@
 import './App.css';
+import React, { Component } from 'react';
 import {  Switch, Route, Link, useLocation } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 
 const Quiz = lazy(()=> import ('./components/Quiz.js'));
 const QuizWynik = lazy(()=> import ('./components/QuizWynik.js'));
+const CarDetails = lazy(() => import('./components/CarDetails.js'));
 // const Login = lazy(() => import('./Login'));
 const Home = lazy(() => import('./Home'));
 // const Register = lazy(() => import('./Register'));
@@ -25,6 +27,7 @@ function App() {
           <Route exact path="/" children={<Home/>}/>
           <Route path="/quiz" children={<Quiz/>}/>
           <Route path="/quiz-wynik" children={ <QuizWynik/> }/>
+          <Route path="/car-details" children={<CarDetails />} />
           {/* <Route path="/login" component={<Login/>}/>
           <Route path="/register" component={<Register/>}/> */}
         </Switch>
